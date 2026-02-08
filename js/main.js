@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         jyoshna: {
             name: "Ms. Jyoshna Yellapu",
             role: "Founder & Managing Director",
-            bio: "Ms. Jyoshna Yellapu has over 3+ years of experience in Soft Skills and Aptitude training, career guidance, and academic project mentoring. She has actively participated in CSR initiatives and skill development programs, conducting Soft Skills and Aptitude training sessions for 1,500+ students and supporting them with placement assistance. She leads organizational strategy, training delivery, and student development activities to ensure strong academic and career outcomes."
+            bio: "Ms. Jyoshna Yellapu has over 3+ years of experience in Soft Skills and Aptitude training, career guidance, and academic project mentoring. She has actively participated in CSR initiatives and skill development programs, conducting Soft Skills and Aptitude training sessions for <span class='font-black text-primary border-b-2 border-accent'>1,500+ students</span> and supporting them with placement assistance. She leads organizational strategy, training delivery, and student development activities to ensure strong academic and career outcomes."
         },
         vahid: {
             name: "Mr. Vahid Shaik",
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (modal && data) {
             document.getElementById('modal-director-name').textContent = data.name;
             document.getElementById('modal-director-role').textContent = data.role;
-            document.getElementById('modal-director-bio').textContent = data.bio;
+            document.getElementById('modal-director-bio').innerHTML = data.bio;
 
             modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden'; // Prevent scrolling
