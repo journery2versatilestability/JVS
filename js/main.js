@@ -77,4 +77,51 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(`https://wa.me/${phone}?text=${fullMessage}`, '_blank');
         });
     }
+
+    // Director Bio Data
+    const directorBios = {
+        jyoshna: {
+            name: "Ms. Jyoshna Yellapu",
+            role: "Founder & Managing Director",
+            bio: "Ms. Jyoshna Yellapu has over 3+ years of experience in Soft Skills and Aptitude training, career guidance, and academic project mentoring. She has actively participated in CSR initiatives and skill development programs, conducting Soft Skills and Aptitude training sessions for 1,500+ students and supporting them with placement assistance. She leads organizational strategy, training delivery, and student development activities to ensure strong academic and career outcomes."
+        },
+        vahid: {
+            name: "Mr. Vahid Shaik",
+            role: "Co-Founder & Academic Director",
+            bio: "Mr. Vahid Shaik has over 2+ years of experience in academic management and training. He is responsible for curriculum planning, maintaining training quality, and coordinating academic programs to ensure strong learning outcomes for students."
+        },
+        sajeed: {
+            name: "Mr. Sajeed Shaik",
+            role: "Co-Founder & Operational Director",
+            bio: "Mr. Sajeed Shaik has over 2+ years of experience in operations management. He oversees organizational operations, program coordination, and service execution, ensuring smooth processes and efficient delivery of training and placement activities."
+        },
+        himasree: {
+            name: "Ms. Himasree Yellapu",
+            role: "Co-Founder & Learning Support Director",
+            bio: "Ms. Himasree Yellapu has over 2+ years of experience in learning support and academic project guidance. She focuses on coordinating student support services, academic mentoring, and project assistance to improve learning outcomes and career readiness."
+        }
+    };
+
+    // Modal Functions
+    window.openDirectorModal = (id) => {
+        const modal = document.getElementById('director-modal');
+        const data = directorBios[id];
+
+        if (modal && data) {
+            document.getElementById('modal-director-name').textContent = data.name;
+            document.getElementById('modal-director-role').textContent = data.role;
+            document.getElementById('modal-director-bio').textContent = data.bio;
+
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+    };
+
+    window.closeDirectorModal = () => {
+        const modal = document.getElementById('director-modal');
+        if (modal) {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+    };
 });
