@@ -1,6 +1,122 @@
 // JVS Academy Main JS
 
 document.addEventListener('DOMContentLoaded', () => {
+    // === Centralized Data (Command Center) ===
+    const defaultData = {
+        siteConfig: {
+            contact: {
+                phone: "+91 91600 30342",
+                phoneRaw: "919160030342",
+                email: "jvsacademyofficial@gmail.com",
+                address: "Visakhapatnam, Andhra Pradesh - 530022",
+                cin: "U85499AP2026PTC123692",
+                whatsappMsg: "Hello JVS Academy, I'm interested in your programs."
+            },
+            social: {
+                instagram: "https://www.instagram.com/jvsacademyofficial/",
+                instagramLearnix: "https://www.instagram.com/jvs_learnix/"
+            },
+            stats: {
+                studentsTrained: "1,500+",
+                placementRate: "100%",
+                trainingDuration: "6 Months (180 Days)"
+            },
+            companyName: "Versatile Stability Academy Private Limited"
+        },
+        directorBios: {
+            jyoshna: {
+                id: 'jyoshna',
+                name: "Ms. Jyoshna Yellapu",
+                role: "Founder & Managing Director",
+                bio: "Ms. Jyoshna Yellapu has over 3+ years of experience in Soft Skills and Aptitude training, career guidance, and academic project mentoring. She has actively participated in CSR initiatives and skill development programs, conducting Soft Skills and Aptitude training sessions for <span class='font-black text-primary border-b-2 border-accent'>1,500+ students</span> and supporting them with placement assistance. She leads organizational strategy, training delivery, and student development activities to ensure strong academic and career outcomes.",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400"
+            },
+            vahid: {
+                id: 'vahid',
+                name: "Mr. Vahid Shaik",
+                role: "Co-Founder & Academic Director",
+                bio: "Mr. Vahid Shaik has over 2+ years of experience in academic management and training. He is responsible for curriculum planning, maintaining training quality, and coordinating academic programs to ensure strong learning outcomes for students.",
+                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400"
+            },
+            sajeed: {
+                id: 'sajeed',
+                name: "Mr. Sajeed Shaik",
+                role: "Co-Founder & Operational Director",
+                bio: "Mr. Sajeed Shaik has over 2+ years of experience in operations management. He oversees organizational operations, program coordination, and service execution, ensuring smooth processes and efficient delivery of training and placement activities.",
+                image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400"
+            },
+            himasree: {
+                id: 'himasree',
+                name: "Ms. Himasree Yellapu",
+                role: "Co-Founder & Learning Support Director",
+                bio: "Ms. Himasree Yellapu has over 2+ years of experience in learning support and academic project guidance. She focuses on coordinating student support services, academic mentoring, and project assistance to improve learning outcomes and career readiness.",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400"
+            }
+        },
+        serviceBenefits: {
+            datascience: { name: "Data Science", benefit: "Master the art of extracting insights from data to drive strategic business decisions and innovation.", price: "₹24,999/-" },
+            dataanalytics: { name: "Data Analytics", benefit: "Learn to transform raw data into meaningful patterns and actionable business intelligence.", price: "₹19,999/-" },
+            cybersecurity: { name: "Cyber Security", benefit: "Protect digital assets and infrastructures by mastering advanced security protocols and threat detection.", price: "₹21,999/-" },
+            digitalmarketing: { name: "Digital Marketing", benefit: "Dominate the digital landscape with expertise in SEO, social media strategies, and online branding.", price: "₹14,999/-" },
+            ai: { name: "Artificial Intelligence", benefit: "Build the future by creating intelligent systems that can learn, reason, and solve complex problems.", price: "₹29,999/-" },
+            ml: { name: "Machine Learning", benefit: "Develop algorithms that allow computers to learn from data and improve performance automatically.", price: "₹27,999/-" },
+            python: { name: "Python Programming", benefit: "Gain a versatile edge in software development with the world's most popular and powerful programming language.", price: "₹11,999/-" },
+            fullstack: { name: "Full Stack Web Dev", benefit: "Become a complete developer by mastering both front-end aesthetics and back-end logic.", price: "₹34,999/-" },
+            cloud: { name: "Cloud (AWS & Azure)", benefit: "Lead digital transformations by managing scalable and secure infrastructures on top cloud platforms.", price: "₹24,999/-" },
+            networking: { name: "Networking (CCNA)", benefit: "Build the backbone of modern communication by mastering complex network architectures and security.", price: "₹17,999/-" },
+            powerbi: { name: "Power BI", benefit: "Visualize success by creating interactive, data-driven dashboards that tell compelling business stories.", price: "₹9,999/-" },
+            msoffice: { name: "MS Office Specialist", benefit: "Maximize workplace productivity with expert-level proficiency in the world's essential business suite.", price: "₹4,999/-" }
+        }
+    };
+
+    // Load Data from LocalStorage or use defaults
+    const appData = JSON.parse(localStorage.getItem('jvs_app_data')) || defaultData;
+    const { siteConfig, directorBios, serviceBenefits } = appData;
+
+    // Helper to save data (visible for debugging/admin)
+    window.saveAppData = (data) => {
+        localStorage.setItem('jvs_app_data', JSON.stringify(data));
+        location.reload();
+    };
+
+    // === Dynamic Data Injection ===
+    const injectDynamicData = () => {
+        // Update all phone instances
+        document.querySelectorAll('.conf-phone').forEach(el => el.textContent = siteConfig.contact.phone);
+
+        // Update all email instances
+        document.querySelectorAll('.conf-email').forEach(el => el.textContent = siteConfig.contact.email);
+
+        // Update all address instances
+        document.querySelectorAll('.conf-address').forEach(el => el.textContent = siteConfig.contact.address);
+
+        // Update all CIN instances
+        document.querySelectorAll('.conf-cin').forEach(el => el.textContent = siteConfig.contact.cin);
+
+        // Update WhatsApp links
+        document.querySelectorAll('.conf-whatsapp-link').forEach(el => {
+            el.href = `https://wa.me/${siteConfig.contact.phoneRaw}?text=${encodeURIComponent(siteConfig.contact.whatsappMsg)}`;
+        });
+
+        // Update Social links
+        document.querySelectorAll('.conf-ig-main').forEach(el => el.href = siteConfig.social.instagram);
+        document.querySelectorAll('.conf-ig-learnix').forEach(el => el.href = siteConfig.social.instagramLearnix);
+
+        // Update Stats
+        document.querySelectorAll('.conf-students-trained').forEach(el => el.textContent = siteConfig.stats.studentsTrained);
+        document.querySelectorAll('.conf-placement-rate').forEach(el => el.textContent = siteConfig.stats.placementRate);
+        document.querySelectorAll('.conf-training-duration').forEach(el => el.textContent = siteConfig.stats.trainingDuration);
+
+        // Update Company Name/Copyright
+        const year = new Date().getFullYear();
+        document.querySelectorAll('.conf-company-copyright').forEach(el => {
+            el.innerHTML = `&copy; ${year} ${siteConfig.companyName}. All Rights Reserved. CIN: ${siteConfig.contact.cin}`;
+        });
+    };
+
+    // Run injection immediately
+    injectDynamicData();
+
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -16,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (whatsappBtn) {
         whatsappBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            const phone = "919160030342"; // Updated contact number
-            const message = "Hello JVS Academy, I'm interested in your programs.";
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
+            window.open(`https://wa.me/${siteConfig.contact.phoneRaw}?text=${encodeURIComponent(siteConfig.contact.whatsappMsg)}`, '_blank');
         });
     }
 
@@ -66,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const interest = document.getElementById('interest').value;
             const userMessage = document.getElementById('message').value;
 
-            const phone = "919160030342";
+            const phone = siteConfig.contact.phoneRaw;
             const fullMessage = `*New Form Submission - JVS Academy*%0A%0A` +
                 `*Name:* ${name}%0A` +
                 `*Email:* ${email}%0A` +
@@ -78,29 +192,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Director Bio Data
-    const directorBios = {
-        jyoshna: {
-            name: "Ms. Jyoshna Yellapu",
-            role: "Founder & Managing Director",
-            bio: "Ms. Jyoshna Yellapu has over 3+ years of experience in Soft Skills and Aptitude training, career guidance, and academic project mentoring. She has actively participated in CSR initiatives and skill development programs, conducting Soft Skills and Aptitude training sessions for <span class='font-black text-primary border-b-2 border-accent'>1,500+ students</span> and supporting them with placement assistance. She leads organizational strategy, training delivery, and student development activities to ensure strong academic and career outcomes."
-        },
-        vahid: {
-            name: "Mr. Vahid Shaik",
-            role: "Co-Founder & Academic Director",
-            bio: "Mr. Vahid Shaik has over 2+ years of experience in academic management and training. He is responsible for curriculum planning, maintaining training quality, and coordinating academic programs to ensure strong learning outcomes for students."
-        },
-        sajeed: {
-            name: "Mr. Sajeed Shaik",
-            role: "Co-Founder & Operational Director",
-            bio: "Mr. Sajeed Shaik has over 2+ years of experience in operations management. He oversees organizational operations, program coordination, and service execution, ensuring smooth processes and efficient delivery of training and placement activities."
-        },
-        himasree: {
-            name: "Ms. Himasree Yellapu",
-            role: "Co-Founder & Learning Support Director",
-            bio: "Ms. Himasree Yellapu has over 2+ years of experience in learning support and academic project guidance. She focuses on coordinating student support services, academic mentoring, and project assistance to improve learning outcomes and career readiness."
-        }
-    };
+    // Dynamic Rendering for Directors (if container exists)
+    const directorsGrid = document.getElementById('directors-grid');
+    if (directorsGrid) {
+        directorsGrid.innerHTML = Object.values(directorBios).map(director => `
+            <div class="group relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 scroll-reveal">
+                <div class="aspect-[4/5] overflow-hidden">
+                    <img src="${director.image}" alt="${director.name}"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity"></div>
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <h4 class="text-2xl font-bold text-white mb-1">${director.name}</h4>
+                    <p class="text-light font-medium mb-4">${director.role}</p>
+                    <button onclick="openDirectorModal('${director.id}')"
+                        class="flex items-center space-x-2 text-white/80 hover:text-white text-sm font-bold group/btn">
+                        <span>Read Full Bio</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 transform group-hover/btn:translate-x-2 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+        `).join('');
+        lucide.createIcons(); // Re-initialize icons for dynamic content
+    }
+
+    // Dynamic Rendering for Courses (if container exists)
+    const coursesGrid = document.getElementById('courses-grid');
+    if (coursesGrid) {
+        coursesGrid.innerHTML = Object.keys(serviceBenefits).map(key => {
+            const course = serviceBenefits[key];
+            return `
+                <button onclick="openServiceModal('${key}')"
+                    class="scroll-reveal p-5 bg-white rounded-2xl border-2 border-slate-100 font-black text-primary flex items-center justify-center gap-3 hover:border-accent hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group shadow-sm">
+                    <div class="w-3 h-3 bg-accent rounded-full group-hover:scale-125 transition-transform"></div>
+                    <span>${course.name}</span>
+                </button>
+            `;
+        }).join('');
+        lucide.createIcons();
+    }
 
     // Modal Functions
     window.openDirectorModal = (id) => {
@@ -126,69 +256,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Service Benefits Data
-    const serviceBenefits = {
-        datascience: {
-            name: "Data Science",
-            benefit: "Master the art of extracting insights from data to drive strategic business decisions and innovation.",
-            price: "₹24,999/-"
-        },
-        dataanalytics: {
-            name: "Data Analytics",
-            benefit: "Learn to transform raw data into meaningful patterns and actionable business intelligence.",
-            price: "₹19,999/-"
-        },
-        cybersecurity: {
-            name: "Cyber Security",
-            benefit: "Protect digital assets and infrastructures by mastering advanced security protocols and threat detection.",
-            price: "₹21,999/-"
-        },
-        digitalmarketing: {
-            name: "Digital Marketing",
-            benefit: "Dominate the digital landscape with expertise in SEO, social media strategies, and online branding.",
-            price: "₹14,999/-"
-        },
-        ai: {
-            name: "Artificial Intelligence",
-            benefit: "Build the future by creating intelligent systems that can learn, reason, and solve complex problems.",
-            price: "₹29,999/-"
-        },
-        ml: {
-            name: "Machine Learning",
-            benefit: "Develop algorithms that allow computers to learn from data and improve performance automatically.",
-            price: "₹27,999/-"
-        },
-        python: {
-            name: "Python Programming",
-            benefit: "Gain a versatile edge in software development with the world's most popular and powerful programming language.",
-            price: "₹11,999/-"
-        },
-        fullstack: {
-            name: "Full Stack Web Dev",
-            benefit: "Become a complete developer by mastering both front-end aesthetics and back-end logic.",
-            price: "₹34,999/-"
-        },
-        cloud: {
-            name: "Cloud (AWS & Azure)",
-            benefit: "Lead digital transformations by managing scalable and secure infrastructures on top cloud platforms.",
-            price: "₹24,999/-"
-        },
-        networking: {
-            name: "Networking (CCNA)",
-            benefit: "Build the backbone of modern communication by mastering complex network architectures and security.",
-            price: "₹17,999/-"
-        },
-        powerbi: {
-            name: "Power BI",
-            benefit: "Visualize success by creating interactive, data-driven dashboards that tell compelling business stories.",
-            price: "₹9,999/-"
-        },
-        msoffice: {
-            name: "MS Office Specialist",
-            benefit: "Maximize workplace productivity with expert-level proficiency in the world's essential business suite.",
-            price: "₹4,999/-"
-        }
-    };
+    // Service Benefits Data handled by appData
 
     // Service Modal Functions
     window.openServiceModal = (id) => {

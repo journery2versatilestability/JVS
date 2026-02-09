@@ -44,11 +44,11 @@
                     <div class="hidden lg:flex items-center space-x-6 text-sm">
                         <div class="flex items-center space-x-2 text-slate-300">
                             <i data-lucide="phone" class="w-4 h-4 text-light"></i>
-                            <span>+91 91600 30342</span>
+                            <span class="conf-phone"></span>
                         </div>
                         <div class="flex items-center space-x-2 text-slate-300">
                             <i data-lucide="mail" class="w-4 h-4 text-light"></i>
-                            <span>jvsacademyofficial@gmail.com</span>
+                            <span class="conf-email"></span>
                         </div>
                     </div>
                 </div>
@@ -161,7 +161,7 @@
                             </div>
                             <div class="flex justify-between border-b border-white/10 pb-4">
                                 <span class="text-slate-400">CIN</span>
-                                <span class="font-semibold text-white">U85499AP2026PTC123692</span>
+                                <span class="font-semibold text-white conf-cin"></span>
                             </div>
                             <div class="flex justify-between border-b border-white/10 pb-4">
                                 <span class="text-slate-400">Reg Number</span>
@@ -182,84 +182,7 @@
                         <h4 class="text-slate-500 uppercase tracking-widest text-sm font-bold mb-4">Directors &
                             Management</h4>
                         <div id="director-list" class="space-y-8">
-                            <!-- Jyoshna Yellapu -->
-                            <div
-                                class="flex items-center justify-between gap-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 group">
-                                <div class="flex items-center gap-6">
-                                    <div
-                                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg">
-                                        <i data-lucide="user" class="w-8 h-8"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="text-xl font-bold text-primary">Ms. Jyoshna Yellapu</h5>
-                                        <p class="text-slate-500 font-medium font-bold">Founder & Managing Director</p>
-                                    </div>
-                                </div>
-                                <button onclick="openDirectorModal('jyoshna')"
-                                    class="text-accent font-bold text-sm hover:underline flex items-center gap-1">
-                                    View More <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-
-                            <!-- Vahid Shaik -->
-                            <div
-                                class="flex items-center justify-between gap-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 group">
-                                <div class="flex items-center gap-6">
-                                    <div
-                                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg">
-                                        <i data-lucide="user" class="w-8 h-8"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="text-xl font-bold text-primary">Mr. Vahid Shaik</h5>
-                                        <p class="text-slate-500 font-medium font-bold">Co-Founder & Academic Director
-                                        </p>
-                                    </div>
-                                </div>
-                                <button onclick="openDirectorModal('vahid')"
-                                    class="text-accent font-bold text-sm hover:underline flex items-center gap-1">
-                                    View More <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-
-                            <!-- Sajeed Shaik -->
-                            <div
-                                class="flex items-center justify-between gap-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 group">
-                                <div class="flex items-center gap-6">
-                                    <div
-                                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg">
-                                        <i data-lucide="user" class="w-8 h-8"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="text-xl font-bold text-primary">Mr. Sajeed Shaik</h5>
-                                        <p class="text-slate-500 font-medium font-bold">Co-Founder & Operational
-                                            Director</p>
-                                    </div>
-                                </div>
-                                <button onclick="openDirectorModal('sajeed')"
-                                    class="text-accent font-bold text-sm hover:underline flex items-center gap-1">
-                                    View More <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
-
-                            <!-- Himasree Yellapu -->
-                            <div
-                                class="flex items-center justify-between gap-6 p-4 bg-slate-50 rounded-2xl border border-slate-100 group">
-                                <div class="flex items-center gap-6">
-                                    <div
-                                        class="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center shadow-lg">
-                                        <i data-lucide="user" class="w-8 h-8"></i>
-                                    </div>
-                                    <div>
-                                        <h5 class="text-xl font-bold text-primary">Ms. Himasree Yellapu</h5>
-                                        <p class="text-slate-500 font-medium font-bold">Co-Founder & Learning Support
-                                            Director</p>
-                                    </div>
-                                </div>
-                                <button onclick="openDirectorModal('himasree')"
-                                    class="text-accent font-bold text-sm hover:underline flex items-center gap-1">
-                                    View More <i data-lucide="chevron-right" class="w-4 h-4"></i>
-                                </button>
-                            </div>
+                            <!-- Dynamic Directors List from main.js -->
                         </div>
 
                         <div class="mt-12 pt-8 border-t border-slate-100">
@@ -278,7 +201,7 @@
     </section>
 
     <!-- Floating WhatsApp -->
-    <a href="https://wa.me/919160030342" target="_blank" class="floating-whatsapp">
+    <a href="#" target="_blank" class="floating-whatsapp conf-whatsapp-link">
         <svg viewBox="0 0 24 24" fill="currentColor" class="w-10 h-10">
             <path
                 d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.414 0 .018 5.396.015 12.03c0 2.12.553 4.189 1.606 6.06L0 24l6.117-1.605a11.803 11.803 0 005.925 1.577h.005c6.632 0 12.028-5.398 12.03-12.03a11.85 11.85 0 00-3.486-8.507z" />
@@ -298,13 +221,13 @@
                         employable professionals across India through quality education and practical training.
                     </p>
                     <div class="mt-8 space-y-4">
-                        <a href="https://www.instagram.com/jvsacademyofficial/" target="_blank"
-                            class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-lg hover:bg-light transition-colors group">
+                        <a href="#" target="_blank"
+                            class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-lg hover:bg-light transition-colors group conf-ig-main">
                             <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
                             <span class="font-bold text-sm">Follow Us</span>
                         </a>
-                        <a href="https://www.instagram.com/jvs_learnix/" target="_blank"
-                            class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-lg hover:bg-light transition-colors group">
+                        <a href="#" target="_blank"
+                            class="inline-flex items-center space-x-2 bg-white/10 px-4 py-2 rounded-lg hover:bg-light transition-colors group conf-ig-learnix">
                             <i data-lucide="instagram" class="w-5 h-5 text-white"></i>
                             <span class="font-bold text-sm">Follow @jvs_learnix</span>
                         </a>
@@ -324,22 +247,21 @@
                     <ul class="space-y-4 text-slate-400">
                         <li class="flex items-start space-x-3">
                             <i data-lucide="map-pin" class="w-5 h-5 text-light shrink-0"></i>
-                            <span>Visakhapatnam, Andhra Pradesh - 530022</span>
+                            <span class="conf-address"></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i data-lucide="phone" class="w-5 h-5 text-light"></i>
-                            <span>+91 91600 30342</span>
+                            <span class="conf-phone"></span>
                         </li>
                         <li class="flex items-center space-x-3">
                             <i data-lucide="mail" class="w-5 h-5 text-light"></i>
-                            <span>jvsacademyofficial@gmail.com</span>
+                            <span class="conf-email"></span>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="border-t border-white/10 pt-8 text-center text-slate-500 text-sm">
-                <p>&copy; 2026 Versatile Stability Academy Private Limited. All Rights Reserved. CIN:
-                    U85499AP2026PTC123692</p>
+                <div class="conf-company-copyright"></div>
                 <div class="mt-4 flex justify-center space-x-6">
                     <a href="terms.html"
                         class="hover:text-white transition-colors font-bold uppercase tracking-wider text-xs">Terms &
