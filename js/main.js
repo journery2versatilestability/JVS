@@ -114,9 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Run injection immediately
-    injectDynamicData();
-
     // Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -163,11 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.scroll-reveal').forEach(el => {
-        el.style.opacity = '0'; // Initial state
-        observer.observe(el);
-    });
-
     // Contact Form WhatsApp Integration
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
@@ -192,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Dynamic Rendering for Directors (if container exists)
+    // === Dynamic Rendering for Directors ===
     const renderDirectors = (containerId, layoutType) => {
         const container = document.getElementById(containerId);
         if (!container) return;
@@ -237,15 +229,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
             }
         }).join('');
-        lucide.createIcons();
     };
 
-    renderDirectors('directors-grid', 'grid');
-    renderDirectors('director-list', 'list');
+    // === Dynamic Rendering for Courses ===
+    const renderCourses = () => {
+        const coursesGrid = document.getElementById('courses-grid');
+        if (!coursesGrid) return;
 
-    // Dynamic Rendering for Courses (if container exists)
-    const coursesGrid = document.getElementById('courses-grid');
-    if (coursesGrid) {
         coursesGrid.innerHTML = Object.keys(serviceBenefits).map(key => {
             const course = serviceBenefits[key];
             return `
@@ -256,8 +246,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             `;
         }).join('');
+    };
+
+    // Initialize All Dynamic Content
+    const initializeApp = () => {
+        injectDynamicData();
+        renderDirectors('directors-grid', 'grid');
+        renderDirectors('director-list', 'list');
+        renderCourses();
+
+        // Re-initialize icons and observers for dynamic content
         lucide.createIcons();
-    }
+        document.querySelectorAll('.scroll-reveal').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
+        });
+    };
+
+    initializeApp();
 
     // Modal Functions
     window.openDirectorModal = (id) => {
@@ -270,22 +276,18 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('modal-director-bio').innerHTML = data.bio;
 
             modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            document.body.style.overflow = 'hidden';
         }
     };
-
 
     window.closeDirectorModal = () => {
         const modal = document.getElementById('director-modal');
         if (modal) {
             modal.classList.add('hidden');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         }
     };
 
-    // Service Benefits Data handled by appData
-
-    // Service Modal Functions
     window.openServiceModal = (id) => {
         const modal = document.getElementById('service-modal');
         const data = serviceBenefits[id];
