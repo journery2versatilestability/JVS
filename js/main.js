@@ -142,6 +142,20 @@ const injectDynamicData = () => {
     document.querySelectorAll('.conf-company-copyright').forEach(el => {
         el.innerHTML = `&copy; ${year} ${siteConfig.companyName}. All Rights Reserved. CIN: ${siteConfig.contact.cin}`;
     });
+
+    // Inject Stats
+    if (siteConfig.stats) {
+        document.querySelectorAll('.conf-training-duration').forEach(el => {
+            if (siteConfig.stats.trainingDuration) {
+                el.textContent = siteConfig.stats.trainingDuration;
+                el.classList.remove('hidden');
+            } else {
+                el.classList.add('hidden');
+            }
+        });
+        document.querySelectorAll('.conf-students-trained').forEach(el => el.textContent = siteConfig.stats.studentsTrained);
+        document.querySelectorAll('.conf-placement-rate').forEach(el => el.textContent = siteConfig.stats.placementRate);
+    }
 };
 
 const renderDirectors = (containerId, layoutType) => {
