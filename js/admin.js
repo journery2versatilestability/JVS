@@ -137,6 +137,33 @@ document.addEventListener('DOMContentLoaded', async () => {
         alert('Site configuration updated successfully!');
     });
 
+    // INIT NEW COURSE FORM
+    document.getElementById('add-course-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('new-course-name').value;
+        const benefit = document.getElementById('new-course-benefit').value;
+        const price = document.getElementById('new-course-price').value;
+
+        // Create a simple key from the name (lowercase, no spaces)
+        const key = name.toLowerCase().replace(/[^a-z0-9]/g, '_');
+
+        if (appData.serviceBenefits[key]) {
+            alert('A course with this name (or similar key) already exists!');
+            return;
+        }
+
+        appData.serviceBenefits[key] = {
+            name: name,
+            benefit: benefit,
+            price: price
+        };
+
+        await syncData('serviceBenefits');
+        renderCourses();
+        closeAddCourseModal();
+        alert('New course added successfully!');
+    });
+
     // INIT PAGE
     initGeneralForm();
     renderDirectors();
@@ -230,14 +257,36 @@ document.getElementById('edit-director-form').addEventListener('submit', async (
     closeEditModal();
 });
 
+window.addNewCourse = () => {
+    document.getElementById('add-course-form').reset();
+    document.getElementById('add-course-modal').classList.remove('hidden');
+};
+
+window.closeAddCourseModal = () => {
+    document.getElementById('add-course-modal').classList.add('hidden');
+};
+
+window.deleteCourse = async (key) => {
+    if (confirm(`Are you sure you want to delete the course "${appData.serviceBenefits[key].name}"?`)) {
+        delete appData.serviceBenefits[key];
+        await syncData('serviceBenefits');
+        renderCourses();
+    }
+};
+
 window.renderCourses = () => {
     const listContainer = document.getElementById('courses-list');
     if (!listContainer) return;
     listContainer.innerHTML = Object.keys(appData.serviceBenefits).map(key => {
         const course = appData.serviceBenefits[key];
         return `
-            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-4">
-                <h4 class="font-bold text-primary border-b pb-2">${course.name}</h4>
+            <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 space-y-4 relative group">
+                <div class="flex justify-between items-start border-b pb-2">
+                    <h4 class="font-bold text-primary pr-8">${course.name}</h4>
+                    <button onclick="deleteCourse('${key}')" class="text-slate-400 hover:text-red-500 transition-colors p-1" title="Delete Course">
+                        <i data-lucide="trash-2" class="w-4 h-4"></i>
+                    </button>
+                </div>
                 <div class="space-y-2">
                     <label class="text-[10px] uppercase font-black text-slate-400">Price (INR)</label>
                     <input type="text" value="${course.price}" data-key="${key}" class="course-price-input w-full px-4 py-3 bg-white border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-primary text-sm font-bold">
@@ -245,6 +294,7 @@ window.renderCourses = () => {
             </div>
         `;
     }).join('');
+    lucide.createIcons();
 };
 
 window.saveAllPrices = async () => {
