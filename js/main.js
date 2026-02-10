@@ -69,9 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             powerbi: { name: "Power BI", benefit: "Visualize success by creating interactive, data-driven dashboards that tell compelling business stories.", price: "₹9,999/-" },
             msoffice: { name: "MS Office Specialist", benefit: "Maximize workplace productivity with expert-level proficiency in the world's essential business suite.", price: "₹4,999/-" },
             aptitude_6m: { name: "Aptitude, Soft Skills, Placement (6 Months)", benefit: "Comprehensive 6-month training in quantitative, logical reasoning, verbal ability, and soft skills with placement assistance.", price: "45000" },
-            aptitude_2m: { name: "Aptitude, Soft Skills, Placement (2 Months)", benefit: "Intensive 2-month crash course in aptitude and soft skills with placement guidance.", price: "25000" },
-            itnonit_6m: { name: "IT & NON IT COURSE (6 Months)", benefit: "Comprehensive 6-month professional training path for both technical and non-technical roles.", price: "45000" },
-            itnonit_2m: { name: "IT & NON IT COURSE (2 Months)", benefit: "Intensive 2-month professional certification for both technical and non-technical roles.", price: "25000" }
+            aptitude_2m: { name: "Aptitude, Soft Skills, Placement (2 Months)", benefit: "Intensive 2-month crash course in aptitude and soft skills with placement guidance.", price: "25000" }
         }
     };
 
@@ -91,9 +89,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
     }
 
-    // CLEANUP: Remove legacy duplicate keys
-    if (appData.serviceBenefits.aptitude) delete appData.serviceBenefits.aptitude;
-    if (appData.serviceBenefits.itnonit) delete appData.serviceBenefits.itnonit;
+    // CLEANUP: Remove legacy/removed duplicate keys
+    const keysToRemove = ['aptitude', 'itnonit', 'itnonit_6m', 'itnonit_2m'];
+    keysToRemove.forEach(key => {
+        if (appData.serviceBenefits[key]) delete appData.serviceBenefits[key];
+    });
 
     siteConfig = appData.siteConfig;
     directorBios = appData.directorBios;
